@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <title>Batching</title>
+
+</head>
+<body>
+    <!-- Hier kommt dein HTML-Code rein -->
+	<h1> Sebastian's batch program </h1>
+	<div>
+		<p>Please push the below button before start working</p>
+		<form action="/batchInRequest">
+			<button id="batchin">BatchIN</button>
+		</form>
+		<div id="text1">
+			<p> Sie sind zur folgenden Zeit gekommen: {{start}}</p>
+		</div><!--ende#text1-->
+		<p>Please push the below button before stop working</p>
+		<form action="/batchOutRequest">
+			<button id="batchout">BatchOUT</button>
+		</form>
+		<div id="text1">
+		<p> Sie sind zur folgenden Zeit gegangen: {{end}}</p>
+		</div><!--ende#text1-->
+	</div>
+
+
+    
+
+    
+    <script>
+      // Hier kommt der JavaScript-Code rein
+
+
+
+    </script>
+</body>
+</html>
