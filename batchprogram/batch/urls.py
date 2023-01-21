@@ -4,5 +4,7 @@ from . import views
 urlpatterns = [
     path('', views.home, name='batch-home'),
     path('batchInRequest', views.batchInRequest),
-    path('batchOutRequest', views.batchOutRequest)
+    path('batchOutRequest', views.batchOutRequest),
+    path('batchBreakRequestStart', views.batchBreakRequestStart),
+    path('batchBreakRequestStop', views.batchBreakRequestStop),
 ]

@@ -10,16 +10,18 @@ import sys
 #import webbrowser
 import pyautogui
 # Create your views here.
-current_time=0.0
-end=0.0
 #counting=False
 from batch.models import Enter_Leave
+
+current_time=0.0
+end=0.0
+breakstop=False
+stopbreak = datetime.now()-datetime.now()
+startbreak= datetime.now()-datetime.now()
 
 def home(request):
     #global now
     return render(request, 'HomeBatch.html', {'start': current_time, 'end': end})
-
-
 
 def batchInRequest(request):
     global now
@@ -36,7 +38,7 @@ def batchInRequest(request):
     #enterleave=Enter_Leave(enter=current_time, leave=end)
     #enterleave.save()
     #webbrowser.open("http://127.0.0.1:8000/", new=0,autoraise=True)
-    count(now,counting)
+    count(now)
     #return render(request, 'HomeBatch.html', {'time': now})
     #! hello() 
     #! solange true wird die Zeit weitergezählt
@@ -57,25 +59,38 @@ def batchOutRequest(request):
     #return HttpResponse("""<html><script>window.location.replace('/');</script></html>""")
     return render(request, 'HomeBatch.html')
 
-def count(now,counting):
+def count(now):
+    global counting
     while counting==True:
         global stop
+        global breakstop
+        global isttime
+        global endtime
+        global endtime2
+        global endtime3
         stop=False
+        #breakstop=False
         #self.loadNotificationCfg()
         ist=datetime.now()
         isttime=ist.strftime("%H:%M:%S")
         print(isttime)
+        if breakstop==True:
+            breaktime = stopbreak - startbreak
+        else:
+            breaktime = datetime.now()-datetime.now()
+        print(breaktime)
         #end_time=time(hour=now.hour, minute=now.minute, second=now.second+2.0)
-        end_time=now+timedelta(seconds=2)
+        end_time=now+timedelta(seconds=2)+breaktime
         endtime=end_time.strftime("%H:%M:%S")
         #endtime=str(end_time)
-        print(endtime)
+        print(f"Endzeit:{endtime}")
+        print(breakstop)
         #end_time2=time(hour=now.hour, minute=now.minute, second=now.second+10.0)
-        end_time2=now+timedelta(seconds=10)
+        end_time2=now+timedelta(seconds=10)+breaktime
         endtime2=end_time2.strftime("%H:%M:%S")
         #endtime2=str(end_time2)
         #end_time3=time(hour=now.hour, minute=now.minute, second=now.second+20.0)
-        end_time3=now+timedelta(seconds=20)
+        end_time3=now+timedelta(seconds=20)+breaktime
         endtime3=end_time3.strftime("%H:%M:%S")
         #endtime3=str(end_time3)
         tim.sleep(1)
@@ -99,6 +114,34 @@ def count(now,counting):
             now=0
             counting=False
             #break
+
+def batchBreakRequestStart(request):
+    global counting
+    global breakstop
+    global stopbreak
+    global startbreak
+    stopbreak=datetime.now()-datetime.now()
+    startbreak==datetime.now()-datetime.now()
+    print("testbreakstart")
+    #counting=False
+    breakstop=False
+    startbreak=datetime.now()
+    startbreaktime=startbreak.strftime("%H:%M:%S")
+    print(startbreaktime)
+    return render(request, 'HomeBatch.html')
+
+def batchBreakRequestStop(request):
+    global counting
+    global breakstop
+    global stopbreak
+    print("testbreakstop")
+    #counting=True
+    breakstop=True
+    stopbreak=datetime.now()
+    stopbreaktime=stopbreak.strftime("%H:%M:%S")
+    print(stopbreaktime)
+    return render(request, 'HomeBatch.html')
+
 
 """
 app=Flask(__name__)

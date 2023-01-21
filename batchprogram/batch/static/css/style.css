@@ -1,8 +1,8 @@
-     body {
+     body{
         background: #0f0f0e;
         text-align: center;
         font-family: "Arial", sans-serif;
-        color: #ffffff;
+        color: white;
         /*width: 35em;
         height: 10em;*/
       }
@@ -11,5 +11,9 @@
       }
       #text1{
         background-color: green;
+        text-align: center;
+      }
+      #break{
+        background-color: blue;
         text-align: center;
       }
