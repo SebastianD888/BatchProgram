@@ -10,10 +10,10 @@
         color: rgb(173, 121, 0);
       }
       #text1{
-        background-color: green;
+        color: green;
         text-align: center;
       }
       #break{
-        background-color: blue;
+        background-color: black;
         text-align: center;
       }

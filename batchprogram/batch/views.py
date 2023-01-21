@@ -18,6 +18,7 @@ end=0.0
 breakstop=False
 stopbreak = datetime.now()-datetime.now()
 startbreak= datetime.now()-datetime.now()
+duringbreak=False
 
 def home(request):
     #global now
@@ -57,7 +58,7 @@ def batchOutRequest(request):
     enterleave.save()
     #webbrowser.open("http://127.0.0.1:8000/",new=0, autoraise=True)
     #return HttpResponse("""<html><script>window.location.replace('/');</script></html>""")
-    return render(request, 'HomeBatch.html')
+    return render(request, 'HomeBatch.html', {'start': current_time, 'end': end})
 
 def count(now):
     global counting
@@ -68,7 +69,11 @@ def count(now):
         global endtime
         global endtime2
         global endtime3
+        global duringbreak
         stop=False
+        while duringbreak==True:
+            print("break")
+            tim.sleep(1)
         #breakstop=False
         #self.loadNotificationCfg()
         ist=datetime.now()
@@ -80,17 +85,17 @@ def count(now):
             breaktime = datetime.now()-datetime.now()
         print(breaktime)
         #end_time=time(hour=now.hour, minute=now.minute, second=now.second+2.0)
-        end_time=now+timedelta(seconds=2)+breaktime
+        end_time=now+timedelta(seconds=10)+breaktime
         endtime=end_time.strftime("%H:%M:%S")
         #endtime=str(end_time)
         print(f"Endzeit:{endtime}")
         print(breakstop)
         #end_time2=time(hour=now.hour, minute=now.minute, second=now.second+10.0)
-        end_time2=now+timedelta(seconds=10)+breaktime
+        end_time2=now+timedelta(seconds=20)+breaktime
         endtime2=end_time2.strftime("%H:%M:%S")
         #endtime2=str(end_time2)
         #end_time3=time(hour=now.hour, minute=now.minute, second=now.second+20.0)
-        end_time3=now+timedelta(seconds=20)+breaktime
+        end_time3=now+timedelta(seconds=30)+breaktime
         endtime3=end_time3.strftime("%H:%M:%S")
         #endtime3=str(end_time3)
         tim.sleep(1)
@@ -120,6 +125,8 @@ def batchBreakRequestStart(request):
     global breakstop
     global stopbreak
     global startbreak
+    global duringbreak
+    duringbreak=True
     stopbreak=datetime.now()-datetime.now()
     startbreak==datetime.now()-datetime.now()
     print("testbreakstart")
@@ -128,19 +135,21 @@ def batchBreakRequestStart(request):
     startbreak=datetime.now()
     startbreaktime=startbreak.strftime("%H:%M:%S")
     print(startbreaktime)
-    return render(request, 'HomeBatch.html')
+    return render(request, 'HomeBatch.html', {'start': current_time, 'end': end})
 
 def batchBreakRequestStop(request):
     global counting
     global breakstop
     global stopbreak
+    global duringbreak
+    duringbreak=False
     print("testbreakstop")
     #counting=True
     breakstop=True
     stopbreak=datetime.now()
     stopbreaktime=stopbreak.strftime("%H:%M:%S")
     print(stopbreaktime)
-    return render(request, 'HomeBatch.html')
+    return render(request, 'HomeBatch.html', {'start': current_time, 'end': end})
 
 
 """

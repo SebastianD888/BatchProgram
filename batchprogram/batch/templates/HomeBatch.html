@@ -18,16 +18,25 @@
 		<div id="text1">
 			<p> Sie sind zur folgenden Zeit gekommen: {{start}}</p>
 		</div><!--ende#Time-->
-		<div id="break">
-		<p>Please push the below button if you make a break</p>
-		<form action="/batchBreakRequestStart">
-			<button id="batchbreakstart">BatchBREAKstart</button>
-		</form>
-		<p>Please push the below button if you stop a break</p>
-		<form action="/batchBreakRequestStop">
-			<button id="batchbreakstop">BatchBREAKstop</button>
-		</form>
-		</div>
+		<table align="center" border="1" width="70%">
+		<tr>
+			<td align="center" valign="top">
+				<div id="break">
+				<p>Please push the below button if you make a break</p>
+				<form action="/batchBreakRequestStart">
+					<button id="batchbreakstart">BreakStart</button>
+				</form>
+				</div>
+			</td>
+			<td align="center" valign="top">
+				<p>Please push the below button if you stop a break</p>
+				<form action="/batchBreakRequestStop">
+					<button id="batchbreakstop">BreakStop</button>
+				</form>
+				</div>
+			</td>
+		</tr>
+		</table>
 		<p>Please push the below button before stop working</p>
 		<form action="/batchOutRequest">
 			<button id="batchout">BatchOUT</button>
