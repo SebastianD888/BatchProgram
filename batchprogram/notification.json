@@ -1,7 +1,7 @@
  [
  {
 	 "title": "Time Alarm",
-	 "text": "8 hours of working is finsihed -> Go Home!",
+	 "text": "8 hours of working is finsihed -> Time to go home!",
 	 "schedule":{ 
 	 "at": "08:00"
 	 }
